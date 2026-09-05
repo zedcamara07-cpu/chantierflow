@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ChantierFlow</string>
+    <string name="projects_title">Projets</string>
+    <string name="tasks_title">Tâches</string>
+    <string name="reports_title">Rapports</string>
+    <string name="expenses_title">Dépenses</string>
+    <string name="photos_title">Photos</string>
+    <string name="organizations_title">Entreprise</string>
+    <string name="search_placeholder">Rechercher…</string>
+    <string name="add_project">Nouveau chantier</string>
+    <string name="add_task">Nouvelle tâche</string>
+    <string name="add_report">Nouveau rapport</string>
+    <string name="add_expense">Nouvelle dépense</string>
+    <string name="add_photo">Ajouter une photo</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_edit">Modifier</string>
+    <string name="empty_projects">Aucun projet pour le moment. Créez votre premier chantier !</string>
+    <string name="empty_tasks">Aucune tâche trouvée pour ce chantier.</string>
+    <string name="empty_reports">Aucun rapport journalier rédigé.</string>
+    <string name="empty_expenses">Aucune dépense enregistrée.</string>
+    <string name="empty_photos">Aucune photo dans la galerie.</string>
+</resources>

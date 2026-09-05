@@ -448,7 +448,7 @@ function Workspace({ session, organizations, onLogout }: {
         if (result.error) throw result.error;
         return [table, result.data || []] as const;
       }));
-      const next = { projects: [], tasks: [], reports: [], expenses: [], photos: [], ...Object.fromEntries(results) };
+      const next: Record<string, Row[]> = { projects: [], tasks: [], reports: [], expenses: [], photos: [], ...Object.fromEntries(results) };
       if (next.photos.length) {
         const signed = await db!.storage.from("site-photos")
           .createSignedUrls(next.photos.map((p: Row) => p.storage_path), 3600);
@@ -653,7 +653,7 @@ function Workspace({ session, organizations, onLogout }: {
               <div className="address"><MapPin size={15} /><span>{row.address || "Adresse non renseignée"}</span></div>
               {(() => {
                 const tasks = data.tasks.filter(t => t.project_id === row.id);
-                const value = progress(tasks);
+                const value = progress(tasks as { status: string }[]);
                 return <div className="progress-section"><div><span>Avancement des tâches</span><strong>{value === null ? "—" : `${value} %`}</strong></div>
                   <div className="progress-track"><span style={{ width: `${value || 0}%` }} /></div>
                   <small className="muted">{tasks.length ? `${tasks.filter(t => t.status === "done").length} / ${tasks.length} terminée(s)` : "Aucune tâche pour le moment"}</small>

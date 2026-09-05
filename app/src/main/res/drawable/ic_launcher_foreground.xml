@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Crane & Building construction symbol -->
+    <path
+        android:fillColor="#CCFBF1"
+        android:pathData="M32,76h44v6H32z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,76V42h32v34H38zm6,-28h6v8h-6zm14,0h6v8h-6zm-14,14h6v8h-6zm14,0h6v8h-6z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M34,36h40v4H34z M52,24h4v12h-4z M46,24h16v3h-16z" />
+</vector>

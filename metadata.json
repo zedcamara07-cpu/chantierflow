@@ -1,0 +1,8 @@
+{
+  "name": "ChantierFlow",
+  "description": "Suivi de chantier au quotidien : gestion des projets, tâches, rapports journaliers, dépenses et photos de chantier.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

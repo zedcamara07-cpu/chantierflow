@@ -1,6 +1,22 @@
-# ChantierFlow — version initiale 0.1
+# ChantierFlow — Application Android & Web
 
-Application web responsive de gestion de chantier, avec configuration Android Capacitor.
+Application de gestion et suivi de chantier au quotidien, réécrite pour Android natif avec **Kotlin**, **Jetpack Compose**, **Material Design 3** et **Room Database**.
+
+## Architecture Android
+
+- **UI & Design System** : Jetpack Compose avec Material Design 3, thème personnalisé Teal (#0F766E), badges de statut colorés, cartes statistiques et navigation par onglets (`NavigationBar`).
+- **State Management** : Architecture MVVM (`ChantierFlowViewModel`) avec `StateFlow` et coroutines Kotlin.
+- **Persistance Locale** : Room Database (`AppDatabase`, `ProjectDao`, `TaskDao`, `ReportDao`, `ExpenseDao`, `PhotoDao`) avec données de démonstration initiales.
+- **Logique métier** : `DomainUtils` (calcul de l'avancement en %, conversion sécurisée des centimes en EUR avec devises fr-FR, formatage des dates).
+
+## Modules et fonctionnalités
+
+1. **Chantiers (Projets)** : Création, modification, filtrage et suppression de chantiers avec statut (Planifié, En cours, En pause, Terminé, Archivé), informations clients, adresses et barre de progression des tâches.
+2. **Tâches** : Suivi des tâches par chantier avec priorité (Basse, Normale, Haute), état (À faire, En cours, Bloqué, Terminé) commutable en un clic, et date d'échéance.
+3. **Journal de chantier (Rapports)** : Rédaction des rapports journaliers datés, avec statut de validation (Brouillon, Transmis, Validé) et consignation des événements de chantier.
+4. **Dépenses** : Suivi budgétaire avec totaliseur automatique, catégories (Matériaux, Main-d’œuvre, Location, Transport, Autre), fournisseurs et statut de paiement (En attente, Payé).
+5. **Photos de chantier** : Galerie visuelle d'avancement avec légendes et association par chantier.
+6. **Entreprise** : Gestion de l'organisation et rôles de l'équipe (Propriétaire, Responsable, Compagnon).
 
 ## État de livraison
 
