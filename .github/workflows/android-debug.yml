@@ -1,0 +1,79 @@
+name: Android - APK de test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Installer Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Installer Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Installer la plateforme Android
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Vérifier la configuration
+        shell: bash
+        run: |
+          test -n "$VITE_SUPABASE_URL" || { echo "Secret VITE_SUPABASE_URL manquant"; exit 1; }
+          test -n "$VITE_SUPABASE_ANON_KEY" || { echo "Secret VITE_SUPABASE_ANON_KEY manquant"; exit 1; }
+
+      - name: Installer les dépendances
+        shell: bash
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Tests unitaires
+        run: npm test
+
+      - name: Compiler l'application web
+        run: npm run build
+
+      - name: Créer le projet Android
+        run: |
+          npx cap add android
+          npx cap sync android
+
+      - name: Compiler l'APK de développement
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Publier l'APK et le verrouillage des dépendances
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChantierFlow-Android-Debug
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            package-lock.json
+          if-no-files-found: error
+          retention-days: 14
